@@ -18,10 +18,22 @@ samples, guidance on mobile development, and a full API reference.
 ## 1. Research: Dart3 Class Modifiers (New Features)
 
 - Keywords:
-    - _[Add here a list of important keywords about the topic]_
-    - ...
-- Video
-  Title: _[Add here a short, interesting and descriptive title for the video that contains high ranking keywords]_
+    - dart class modifiers
+    - Dart class modifiers list
+    - dart class constructor
+    - dart class modifiers github
+    - Dart class modifiers flutter
+    - Dart class modifiers examples
+    - Dart class modifiers list flutter
+    - Dart class modifiers github flutter
+    - dart mixin
+    - dart interface
+    - dart classes
+    - dart sealed class
+    - dart final, base and abstract class
+
+- Video Title: Class Modifiers in Dart Language | New Features in Dart 3 | Class Modifiers with
+  abstract, base, interface, final and sealed classes
 
 ## 2. Research: Competitors
 
@@ -101,6 +113,41 @@ include:
 
 Only the `base` modifier can appear before a mixin declaration. The modifiers do not apply to other
 declarations like `enum`, `typedef`, or `extension`.
+
+Only the `base` modifier can appear before a `mixin` declaration.
+
+Many combinations don't make sense:
+
+* `base`, `interface`, and `final` all control the same two capabilities so
+  are mutually exclusive.
+* `sealed` types cannot be constructed so it's redundant to combine with
+  `abstract`.
+* `sealed` types already cannot be mixed in, extended or implemented
+  from another library, so it's redundant to combine with `final`,
+  `base`, or `interface`.
+* `mixin` as a modifier can obviously only be applied to a `class`
+  declaration, which makes it also introduce a mixin.
+* `mixin` as a modifier cannot be applied to a mixin-application `class`
+  declaration (the `class C = S with M;` syntax for declaring a class). The
+  remaining modifiers can.
+* A `mixin` or `mixin class` declaration is intended to be mixed in,
+  so its declaration cannot have an `interface`, `final` or `sealed` modifier.
+* A `mixin` declaration cannot be constructed, so `abstract` is redundant.
+* `enum` declarations cannot be extended, implemented, mixed in,
+  and can always be instantiated, so no modifiers apply to `enum`
+  declarations.
+
+The remaining valid combinations and their capabilities are:
+
+| Declaration | Construct? | Extend? | Implement? | Mix in? | Exhaustive? |
+|--|--|--|--|--|--|
+|`class`                    |**Yes**|**Yes**|**Yes**|No |No |
+|`base class`               |**Yes**|**Yes**|No |No |No |
+|`interface class`          |**Yes**|No |**Yes**|No |No |
+|`final class`              |**Yes**|No |No |No |No |
+|`sealed class`             |No |No |No |No |**Yes**|
+|`abstract class`           |No |**Yes**|**Yes**|No |No |
+|`mixin`                    |No |No |**Yes**|**Yes**|No |
 
 ## No modifier
 
