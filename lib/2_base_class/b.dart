@@ -2,7 +2,7 @@
 import 'a.dart';
 
 // Can be constructed
-Vehicle myVehicle = Vehicle();
+final myVehicle = Vehicle();
 
 // Can be extended
 base class Car extends Vehicle {

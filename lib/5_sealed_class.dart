@@ -7,10 +7,10 @@ class Truck implements Vehicle {}
 class Bicycle extends Vehicle {}
 
 // ERROR: Cannot be instantiated
-// Vehicle myVehicle = Vehicle();
+// final myVehicle = Vehicle();
 
 // Subclasses can be instantiated
-Vehicle myCar = Car();
+final myCar = Car();
 
 // String getVehicleSound(Vehicle vehicle) {
 // // ERROR: The switch is missing the Bicycle subtype or a default case.

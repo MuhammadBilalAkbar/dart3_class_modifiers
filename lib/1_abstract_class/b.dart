@@ -2,7 +2,7 @@
 import 'a.dart';
 
 // Error: Cannot be constructed
-// Vehicle myVehicle = Vehicle();
+// final myVehicle = Vehicle();
 
 // Can be extended
 class Car extends Vehicle {

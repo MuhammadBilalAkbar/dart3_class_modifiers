@@ -119,7 +119,7 @@ Only the `base` modifier can appear before a `mixin` declaration.
 Many combinations don't make sense:
 
 * `base`, `interface`, and `final` all control the same two capabilities so
-  are mutually exclusive.
+  are mutually disjointed.
 * `sealed` types cannot be constructed so it's redundant to combine with
   `abstract`.
 * `sealed` types already cannot be mixed in, extended or implemented
