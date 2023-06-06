@@ -4,7 +4,7 @@ import 'a.dart';
 // Error: Cannot be constructed
 // final myVehicle = Vehicle();
 
-// Can be extended
+// Can be extended/inherited
 class Car extends Vehicle {
   @override
   void moveForward(int meters) {

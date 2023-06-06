@@ -40,6 +40,7 @@ samples, guidance on mobile development, and a full API reference.
 **Flutter Videos/Articles**
 
 - 4.9K: https://youtu.be/Od49lG0ez0o
+- 19K: https://youtu.be/dBwvc-U8q-c?t=1359
 - https://dart.dev/language/class-modifiers
 - https://github.com/dart-lang/language/blob/main/accepted/future-releases/class-modifiers/feature-specification.md
 - https://stevenosse.com/dart-3-in-depth-new-class-modifiers
@@ -65,8 +66,28 @@ samples, guidance on mobile development, and a full API reference.
 
 **Android/Swift/React Videos**
 
-- _[Add here the high ranking video links that have many views, or are ranked high on YouTube ...]_
-- _[e.g. 380K: https://www.youtube.com/watch?v=Nl54MJDR2p8]_
+- 213K: https://youtu.be/vgg9T4_0CNA
+- 14K: https://youtu.be/mlVYooy93sE
+- 56K: https://youtu.be/hee-ZuJ9XOk
+- 203K: https://youtu.be/H0OetoieSDQ
+- 30K: https://youtu.be/RFGEzkBa834
+- 3.9K: https://youtu.be/8pYAeX9a6v8
+- 7.6K: https://youtu.be/9FWRMp5TgAk
+- 2.9K: https://youtu.be/UXyWWEaLr70
+- https://www.w3schools.com/java/java_modifiers.asp
+- https://www.javatpoint.com/access-modifiers
+- https://www.mygreatlearning.com/blog/the-access-modifiers-in-java/
+- https://docs.oracle.com/javase/tutorial/reflect/class/classModifiers.html
+- https://www.javatpoint.com/access-modifiers
+- https://www.cosmiclearn.com/swift/accessmodifiers.php
+- https://docs.swift.org/swift-book/documentation/the-swift-programming-language/accesscontrol/
+- https://www.programiz.com/swift-programming/access-control
+- https://www.tutorialspoint.com/swift/swift_access_control.htm
+- https://medium.com/analytics-vidhya/access-specifier-in-swift-4c6698eb3577
+- https://abhimuralidharan.medium.com/swift-3-0-1-access-control-9e71d641a56c
+- https://www.programiz.com/swift-programming/access-control
+- https://blog.logrocket.com/understanding-inheritance-react-native/
+- https://www.itechempires.com/2019/09/what-is-access-modifiers-and-how-to-use-access-modifiers-in-typescript/
 
 **Great Features**
 
@@ -86,12 +107,18 @@ encapsulation, information hiding, accessibility control, code organization, and
 
 **Main Points / Purpose Of Lesson**
 
-1. In this video lesson, you will learn how to use class modifiers according to the requirements
-   what you need.
-2. _[What are the main points of this video lesson]_
-    - _[Add here multiple main points ...]_
-    - _[...]_
-3. _[Out of 1. & 2. create 2-3 sentences that could be later used for recording the introduction of this video lesson]_
+1. In this video lesson, you will learn how to use class modifiers (for adding restrictions) in Dart
+   to control visibility, force encapsulation, enable inheritance, facilitate polymorphism, and
+   improve code.
+2. Main Points:
+    - Abstract
+    - Base
+    - Interface
+    - Final
+    - Sealed
+    - Mixin
+3. This is how you can use class modifiers in dart according to your own requirements to add
+   restrictions to classes and their fields and methods.
 
 **The Structured Main Content**
 
@@ -102,42 +129,23 @@ their library.
 
 Modifier keywords come before a class or mixin declaration. For example, writing `abstract class`
 defines an abstract class. The full set of modifiers that can appear before a class declaration
-include:
+are:
 
-- abstract
-- base
-- final
-- interface
-- sealed
-- mixin
+- [abstract](#abstract)
+- [base](#base)
+- [final](#final)
+- [interface](#interface)
+- [sealed](#sealed)
+- [mixin](#mixin)
 
-Only the `base` modifier can appear before a mixin declaration. The modifiers do not apply to other
-declarations like `enum`, `typedef`, or `extension`.
+**Only the `base` modifier can appear before a `mixin` declaration.**
 
-Only the `base` modifier can appear before a `mixin` declaration.
+The modifiers do not apply to other declarations like `enum`, `typedef`, or `extension`.
 
-Many combinations don't make sense:
+When deciding whether to use class modifiers, consider the intended uses of the class, and what
+behaviors the class needs to be able to rely on.
 
-* `base`, `interface`, and `final` all control the same two capabilities so
-  are mutually disjointed.
-* `sealed` types cannot be constructed so it's redundant to combine with
-  `abstract`.
-* `sealed` types already cannot be mixed in, extended or implemented
-  from another library, so it's redundant to combine with `final`,
-  `base`, or `interface`.
-* `mixin` as a modifier can obviously only be applied to a `class`
-  declaration, which makes it also introduce a mixin.
-* `mixin` as a modifier cannot be applied to a mixin-application `class`
-  declaration (the `class C = S with M;` syntax for declaring a class). The
-  remaining modifiers can.
-* A `mixin` or `mixin class` declaration is intended to be mixed in,
-  so its declaration cannot have an `interface`, `final` or `sealed` modifier.
-* A `mixin` declaration cannot be constructed, so `abstract` is redundant.
-* `enum` declarations cannot be extended, implemented, mixed in,
-  and can always be instantiated, so no modifiers apply to `enum`
-  declarations.
-
-The remaining valid combinations and their capabilities are:
+**Exhaustive** means includes all possibilities which can occur.
 
 | Declaration | Construct? | Extend? | Implement? | Mix in? | Exhaustive? |
 |--|--|--|--|--|--|
@@ -161,7 +169,7 @@ declaration without a modifier. By default, you can:
 
 ## abstract
 
-To define a class that doesn’t require a full, concrete implementation of its entire interface, use
+To define a class that doesn’t require complete implementation of its entire interface, use
 the abstract modifier.
 
 - Abstract classes can be extended and implemented.
@@ -213,7 +221,7 @@ disallows implementation outside of its own library. This guarantees:
   new member. (This is true unless the subtype already declares a member with the same name and an
   incompatible signature.)
 
-You must mark any class which implements or extends a base class as base, final, or sealed. This
+**You must mark any class which implements or extends a base class as base, final, or sealed.** This
 prevents outside libraries from breaking the base class guarantees.
 
 ```dart
@@ -254,9 +262,6 @@ defining library can implement the interface, but not extend it. This guarantees
 
 - When one of the class’s instance methods calls another instance method on this, it will always
   invoke a known implementation of the method from the same library.
-- Other libraries can’t override methods that the interface class’s own methods might later call in
-  unexpected ways. This reduces
-  the [fragile base class problem](https://en.wikipedia.org/wiki/Fragile_base_class).
 
 ```dart
 // Library a.dart
@@ -292,21 +297,20 @@ class MockVehicle implements Vehicle {
 ### abstract interface
 
 The most common use for the interface modifier is to define a pure interface. Combine the interface
-and abstract modifiers for an abstract interface class.
-
-Like an interface class, other libraries can implement, but cannot inherit, a pure interface. Like
-an abstract class, a pure interface can have abstract members.
+and abstract modifiers for an abstract interface class. It is a true interface in dart.
 
 ## final
 
-To close the type hierarchy, use the final modifier. This prevents subtyping from a class outside of
-the current library. Disallowing both inheritance and implementation prevents subtyping entirely.
+To close the type hierarchy, use the final modifier. It does not allow to overwritten data coming
+from superclass by disallowing both inheritance and implementation prevents subtyping entirely.
 This guarantees:
 
-You can safely add incremental changes to the API.
-You can call instance methods knowing that they haven’t been overwritten in a third-party subclass.
-Final classes can be extended or implemented within the same library. The final modifier encompasses
-the effects of base, and therefore any subclasses must also be marked base, final, or sealed.
+- You can safely add incremental changes to the API.
+- You can call instance methods knowing that they haven’t been overwritten in a third-party
+  subclass.
+
+Final classes can be extended or implemented within the same library. The final modifier surrounds
+the effects of base, and therefore any **subclasses must also be marked base, final, or sealed**.
 
 ```dart
 // Library a.dart
@@ -342,8 +346,7 @@ class MockVehicle implements Vehicle {
 ## sealed
 
 To create a known, enumerable set of subtypes, use the sealed modifier. This allows you to create a
-switch over those subtypes that is statically ensured to be exhaustive(reports a compile-time error
-if it’s possible for a value to enter a switch but not match any of the cases).
+switch over those subtypes that is statically ensured to be exhaustive(includes all possibilities).
 
 The sealed modifier prevents a class from being extended or implemented outside its own library.
 Sealed classes are implicitly abstract.
@@ -355,8 +358,8 @@ Sealed classes are implicitly abstract.
 Subclasses of sealed classes are, however, not implicitly abstract.
 
 The compiler is aware of any possible direct subtypes because they can only exist in the same
-library. This allows the compiler to alert you when a switch does not exhaustively handle all
-possible subtypes in its cases:
+library. This allows the compiler to alert you when a switch does not exhaustively(including all
+possibilities) handle all possible subtypes in its cases:
 
 ```dart
 sealed class Vehicle {}
@@ -382,8 +385,17 @@ String getVehicleSound(Vehicle vehicle) {
 }
 ```
 
-If you don’t want exhaustive switching, or want to be able to add subtypes later without breaking
-the API, use the final modifier.
+If you don’t want exhaustive(includes all possibilities) switching, or want to be able to add
+subtypes later without breaking the API, use the final modifier.
+
+## mixin
+
+required for mixin (usage of `with`)
+
+For base and final class, others subclasses extending or implementing from base or final class in
+the same library must be base, final or sealed.
+
+mixin allows for the reuse of a class’s code in multiple class hierarchies.
 
 ## Combining modifiers
 
@@ -397,7 +409,40 @@ You can combine some modifiers for layered restrictions. A class declaration can
 4. The class keyword itself.
 
 You can’t combine some modifiers because they are contradictory, redundant, or otherwise mutually
-exclusive:
+exclusive(disjoint):
 
-abstract with sealed. A sealed class is always implicitly abstract.
-interface, final or sealed with mixin. These access modifiers prevent mixing in.
+- abstract with sealed. A sealed class is always implicitly abstract.
+- interface, final or sealed with mixin. These access modifiers prevent mixing in.
+
+## Summary
+
+**base**
+
+can not use `implements`. It's useful for ensuring all private members are retained. Disallow
+overriding the constructor.
+
+**interface**
+
+can not use inherit from (no usage of `extends` or `with`). It's useful for defining a contract for
+others to implement.
+
+**sealed**
+
+sealed class can not be instantiated. It is implicitly abstract.
+
+It prevents other classes from extending or implementing it outside of the same library.
+
+It is exhaustive (all direct subtypes (excluding indirect subtypes) of a sealed class must be
+covered in switch statement).
+
+**final**
+
+can not inherit or implement (no usage of `extends`, `with` or `implements`) outside of the same
+library.
+
+It is kind of like declaring a final variable. Once it is initialized, you can't change it.
+
+It's useful for closing the type hierarchy so that no such subclasses are possible.
+
+As a sample benefit, this allows the API owner to add new members without risking breaking changes
+to the consumers of the API.
