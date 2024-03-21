@@ -10,5 +10,7 @@ import 'a.dart';
 // // ERROR: Cannot be implemented
 // class Vehicle2 implements Vehicle {}
 
-// Subclasses can be instantiated
+// Subclasses can be instantiated/constructed, extended/inherited, implemented
 final myCar = Car();
+class Vehicle1 extends Car {}
+class Vehicle2 implements Car {}

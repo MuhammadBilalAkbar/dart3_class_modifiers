@@ -11,14 +11,14 @@ void main() {
   athlete.run();
 }
 
-mixin Jumping {
-  void jump() {
-    print('Jumping...');
-  }
-}
-
-mixin Running {
-  void run() {
-    print('Running...');
-  }
-}
+// mixin Jumping {
+//   void jump() {
+//     print('Jumping...');
+//   }
+// }
+//
+// mixin Running {
+//   void run() {
+//     print('Running...');
+//   }
+// }
